@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  html,
+  body {
+    min-height: 100vh;
+    width: 100vw;
+    text-align: center;
+  }
+
+  body {
+    padding: 20px;
+    overflow-x: hidden
+  }
+
+  .container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    gap: 55px;
+    flex-wrap: wrap;
+
+  }
+
+  .card {
+    height: 300px;
+    width: 250px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px rgb(60, 58, 58), -2px -2px 5px rgb(60, 56, 56);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .card img {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .heading {
+    padding: 20px 0;
+    font-size: 50px;
+  }
+</style>
+
+<body>
+  <h1 class="heading">Profiles</h1>
+  <div class="container">
+    <% users.forEach((e)=>{%>
+      <div class="card">
+        <img
+          src="<%=e.profile%>"
+          alt="">
+        <h2><%=e.username%></h2>
+        <p><%=e.email%></p>
+      </div>
+      <%})%>
+
+
+  </div>
+
+
+</body>
+
+</html>
