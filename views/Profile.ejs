@@ -18,66 +18,76 @@
   body {
     min-height: 100vh;
     width: 100vw;
-    text-align: center;
   }
 
   body {
-    padding: 20px;
-    overflow-x: hidden
+    padding: 20px 40px;
   }
 
-  .container {
-    height: 100%;
-    width: 100%;
+  .profileimg {
+    height: 100px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+
+    object-fit: cover;
+    object-position: center;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  .postcontainer {
+    min-height: 60vh;
+    width: 95vw;
     display: flex;
-    gap: 55px;
+    gap: 25px;
     flex-wrap: wrap;
+
 
   }
 
   .card {
-    height: 300px;
-    width: 250px;
-    border-radius: 20px;
+    height: 350px;
+    width: 270px;
+    border-radius: 5px;
     box-shadow: 2px 2px 5px rgb(60, 58, 58), -2px -2px 5px rgb(60, 56, 56);
-    padding: 30px;
+    /* padding: 30px; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 15px;
   }
 
   .card img {
-    height: 150px;
-    width: 150px;
+    height: 100%;
+    width: 100%;
     border-radius: 50%;
     object-fit: cover;
-  }
 
-  .heading {
-    padding: 20px 0;
-    font-size: 50px;
+  }
+  .top{
+    display: inline-block;
+    margin-bottom: 20px;
+
   }
 </style>
 
 <body>
-  <h1 class="heading">Profiles</h1>
-  <div class="container">
-    <% users.forEach((e)=>{%>
-      <div class="card">
-        <img
-          src="<%=e.profile%>"
-          alt="">
-        <h2><%=e.username%></h2>
-        <p><%=e.email%></p>
-      </div>
+  <div class="top"><img class="profileimg" src="<%=user.profile%>"></img>
+    <h1>
+      <%=user.username%>
+    </h1>
+  </div>
+
+  <div class="postcontainer">
+    <%user.posts.forEach((e)=>{%>
+      <img class="card" src="<%=e.post%>"></img>
+      <h1></h1>
       <%})%>
 
 
   </div>
-
-
 </body>
 
 </html>

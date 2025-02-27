@@ -9,6 +9,12 @@ module.exports.userRegisterViewController = (req, res) => {
 };
 module.exports.userRegisterController = async (req, res) => {
   const { username, email, password, profile } = req.body;
+  const isuserExist = await userModel.findOne({
+    email,
+  });
+  if (isuserExist) {
+    res.send("user already Exist");
+  }
   const hashpassword = await bcrypt.hash(password, 10);
   const user = await userModel.create({
     username,
@@ -56,8 +62,10 @@ module.exports.userLoginController = async (req, res) => {
 };
 
 module.exports.userProfileController = async (req, res) => {
-  const users = await userModel.find();
-  res.render("Profile", { users });
+  const user = await userModel.findOne({
+    _id: req.user.id,
+  }).populate("posts");
+  res.render("Profile", { user });
 };
 module.exports.feedController = async (req, res) => {
   const posts = await postModel.find().populate("author");
