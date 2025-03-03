@@ -28,7 +28,6 @@
     height: 100px;
     aspect-ratio: 1;
     border-radius: 50%;
-
     object-fit: cover;
     object-position: center;
   }
@@ -50,9 +49,7 @@
   .card {
     height: 350px;
     width: 270px;
-    border-radius: 5px;
     box-shadow: 2px 2px 5px rgb(60, 58, 58), -2px -2px 5px rgb(60, 56, 56);
-    /* padding: 30px; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -64,7 +61,6 @@
     width: 100%;
     border-radius: 50%;
     object-fit: cover;
-
   }
   .top{
     display: inline-block;
@@ -72,21 +68,17 @@
 
   }
 </style>
-
 <body>
   <div class="top"><img class="profileimg" src="<%=user.profile%>"></img>
     <h1>
       <%=user.username%>
     </h1>
   </div>
-
   <div class="postcontainer">
     <%user.posts.forEach((e)=>{%>
       <img class="card" src="<%=e.post%>"></img>
       <h1></h1>
       <%})%>
-
-
   </div>
 </body>
 
