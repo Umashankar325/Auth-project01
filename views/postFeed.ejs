@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
 </head>
 <style>
   * {
@@ -37,6 +38,7 @@
   }
 
   .section {
+    margin-top: 30px;
     height: 100%;
     width: 100%;
     display: flex;
@@ -45,7 +47,7 @@
   }
 
   .card {
-    height: 20rem;
+    height: 25rem;
     width: 18rem;
     padding: 5px;
     /* background-color: red; */
@@ -65,7 +67,9 @@
     /* justify-content: center; */
     align-items: center;
     gap: 10px;
-  padding: 2px;}
+    padding: 2px;
+  }
+
   .top .img {
     background-color: green;
     height: 90%;
@@ -95,12 +99,115 @@
     font-size: 20px;
     padding: 5px;
     font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .caption a {
+    display: flex;
+    gap: 10px;
+  }
+
+  .heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+  }
+
+  .topsection {
+    text-align: center;
+    padding-bottom: 10px;
+    font-size: 20px;
+    padding: 0px 30px;
+  }
+
+  .buttons {
+    /* display: flex; */
+    gap: 20px;
+  }
+
+  .loginbutton,
+  .registerbutton,
+  .right button {
+    cursor: pointer;
+    padding: 5px;
+    height: 40px;
+    font-size: 20px;
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    text-decoration: none;
+    color: black;
+    box-shadow: inset 2px 2px 5px rgb(238, 241, 241), inset -2px -2px 5px rgb(120, 115, 115);
+  }
+
+  .profile {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    gap: 10px;
+    /* background-color: red; */
+    cursor: pointer;
+    text-decoration: none;
+
+  }
+
+  .profile img {
+    height: 45px;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .profile p {
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: capitalize;
+
+  }
+
+  .right {
+    display: flex;
+
+    /* width: 300px; */
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
   }
 </style>
 
 <body>
   <div class="main">
-    <h1>Posts</h1>
+    <div class="heading">
+      <p></p>
+      <h1>Posts</h1>
+      <%if(req.user){%>
+        <div class="right"> <a href="/user/profile" class="profile">
+            <img src="<%=req.user.profile%>" alt="">
+
+            <p>
+              <%=req.user.username%>
+            </p>
+
+          </a>
+          <form action="/user/logout" method="get">
+            <button>Log out</button>
+          </form>
+        </div>
+
+        <% }else{%>
+          <div class="buttons">
+            <a class="loginbutton" href="/user/login">Login</a>
+            <a class="registerbutton" href="/user/register">Register</a>
+          </div>
+          <% }%>
+
+
+    </div>
+
     <div class="section">
       <%posts.forEach((e)=>{%>
 
@@ -113,7 +220,8 @@
           </div>
           <img src='<%=e.post%> ' class="postimg"></img>
           <div class="caption">
-            <%=e.description%>
+            <%=e.description%><a><i class="ri-heart-line"></i><i class="ri-chat-3-line"></i><i
+                  class="ri-share-fill"></i></a>
           </div>
         </div>
         <% })%>

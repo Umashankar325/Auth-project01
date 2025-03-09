@@ -11,8 +11,10 @@ route.post("/register", userController.userRegisterController);
 route.get("/login", userController.userLoginViewController);
 route.post("/login", userController.userLoginController);
 
+route.get("/logout", userController.userLogoutController);
+
 route.get("/profile",userVarify,userController.userProfileController);
 
-route.get("/feed",userVarify,userController.feedController)
+
 
 module.exports = route;

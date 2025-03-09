@@ -21,5 +21,5 @@ module.exports.createpostController = async (req, res) => {
       },
     }
   );
-  res.redirect("/user/feed");
+  res.redirect("/");
 };

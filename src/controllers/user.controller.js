@@ -30,7 +30,7 @@ module.exports.userRegisterController = async (req, res) => {
     "user_auth_key"
   );
   res.cookie("token", token);
-  res.redirect("/user/profile");
+  res.redirect("/");
 };
 
 module.exports.userLoginViewController = (req, res) => {
@@ -58,16 +58,25 @@ module.exports.userLoginController = async (req, res) => {
     "user_auth_key"
   );
   res.cookie("token", token);
-  res.redirect("/user/profile");
+  res.redirect("/");
 };
 
 module.exports.userProfileController = async (req, res) => {
-  const user = await userModel.findOne({
-    _id: req.user.id,
-  }).populate("posts");
+  const user = await userModel
+    .findOne({
+      _id: req.user.id,
+    })
+    .populate("posts");
   res.render("Profile", { user });
 };
+
 module.exports.feedController = async (req, res) => {
   const posts = await postModel.find().populate("author");
-  res.render("postFeed", { posts });
+  
+  res.render("postFeed", { posts, req });
 };
+
+module.exports.userLogoutController=(req,res)=>{
+  res.cookie("token", "", { expires: new Date(0), httpOnly: true, path: "/" }); // Clear token
+  res.redirect("/"); // Redirect to login page
+}

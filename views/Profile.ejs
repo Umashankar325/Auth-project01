@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
 </head>
 <style>
   * {
@@ -24,61 +25,172 @@
     padding: 20px 40px;
   }
 
+  .profilesection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .profilesection .left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
   .profileimg {
-    height: 100px;
+    height: 70px;
     aspect-ratio: 1;
     border-radius: 50%;
     object-fit: cover;
     object-position: center;
   }
 
-  h1 {
-    text-align: center;
-  }
-
-  .postcontainer {
-    min-height: 60vh;
-    width: 95vw;
-    display: flex;
-    gap: 25px;
-    flex-wrap: wrap;
-
-
-  }
-
-  .card {
-    height: 350px;
-    width: 270px;
-    box-shadow: 2px 2px 5px rgb(60, 58, 58), -2px -2px 5px rgb(60, 56, 56);
+  .username {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    align-items: start;
   }
 
-  .card img {
+  .username h1 {
+    font-size: 25px;
+  }
+
+  .username p {
+    font-size: 21px;
+    font-weight: 400;
+  }
+
+  .right {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .button {
+    padding: 5px;
+    height: 40px;
+    font-size: 20px;
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    text-decoration: none;
+    color: black;
+    box-shadow: inset 2px 2px 5px rgb(238, 241, 241), inset -2px -2px 5px rgb(120, 115, 115);
+  }
+
+
+  .postcontainer {
+    margin-top: 30px;
     height: 100%;
     width: 100%;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+
+  .card {
+    height: 20rem;
+    width: 18rem;
+    padding: 5px;
+    box-shadow: 1px 1px 5px black;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column
+  }
+
+  .top {
+
+    width: 100%;
+    height: 15%;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 10px;
+    padding: 2px;
+  }
+
+  .top .img {
+    height: 90%;
+    aspect-ratio: 1;
     border-radius: 50%;
     object-fit: cover;
-  }
-  .top{
-    display: inline-block;
-    margin-bottom: 20px;
+    object-position: center;
 
   }
+
+  .top .username {
+    font-size: 25px;
+    font-weight: 600;
+  }
+
+  .postimg {
+    width: 95%;
+    height: 70%;
+    margin: auto;
+    /* background-color: yellow; */
+    object-fit: cover;
+    object-position: center;
+    border-radius: 5px;
+  }
+
+  .caption {
+    font-size: 20px;
+    padding: 5px;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .caption a {
+    display: flex;
+    gap: 10px;
+  }
 </style>
+
 <body>
-  <div class="top"><img class="profileimg" src="<%=user.profile%>"></img>
-    <h1>
-      <%=user.username%>
-    </h1>
+  <div class="profilesection">
+    <div class="left"><img class="profileimg" src="<%=user.profile%>"></img>
+      <div class="username">
+        <h1>
+          <%=user.username.toUpperCase()%>
+        </h1>
+        <p>
+          <%=user.email%>
+        </p>
+      </div>
+    </div>
+    <div class="right">
+      <a href="/post/create" class="button">Create post</a>
+      <form action="/user/logout" method="get">
+        <button class="button">Log out</button>
+      </form>
+
+    </div>
+
   </div>
   <div class="postcontainer">
+
+
+
     <%user.posts.forEach((e)=>{%>
-      <img class="card" src="<%=e.post%>"></img>
-      <h1></h1>
-      <%})%>
+
+      <div class="card">
+        <div class="top">
+          <img src='<%=user.profile%> ' class="img"></img>
+          <div class="username">
+            <%=user.username%>
+          </div>
+        </div>
+        <img src='<%=e.post%>' class="postimg"></img>
+        <div class="caption">
+          <%=e.description%><a><i class="ri-heart-line"></i><i class="ri-chat-3-line"></i><i
+                class="ri-share-fill"></i></a>
+        </div>
+      </div>
+      <% })%>
+
   </div>
 </body>
 
