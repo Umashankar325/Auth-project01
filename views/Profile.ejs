@@ -91,7 +91,7 @@
 
 
   .card {
-    height: 20rem;
+    height: 25rem;
     width: 18rem;
     padding: 5px;
     box-shadow: 1px 1px 5px black;
@@ -127,7 +127,7 @@
 
   .postimg {
     width: 95%;
-    height: 70%;
+    height: 80%;
     margin: auto;
     /* background-color: yellow; */
     object-fit: cover;
@@ -147,6 +147,12 @@
     display: flex;
     gap: 10px;
   }
+  .home{
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    cursor: pointer;
+  }
 </style>
 
 <body>
@@ -161,6 +167,7 @@
         </p>
       </div>
     </div>
+  <a href="/" class="home"><i class="ri-home-2-line"></i> Home</a>
     <div class="right">
       <a href="/post/create" class="button">Create post</a>
       <form action="/user/logout" method="get">

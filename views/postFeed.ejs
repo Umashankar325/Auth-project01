@@ -182,8 +182,6 @@
 <body>
   <div class="main">
     <div class="heading">
-      <p></p>
-      <h1>Explore Posts</h1>
       <%if(req.user){%>
         <div class="right"> <a href="/user/profile" class="profile">
             <img src="<%=req.user.profile%>" alt="">
@@ -193,17 +191,25 @@
             </p>
 
           </a>
-          <form action="/user/logout" method="get">
-            <button>Log out</button>
-          </form>
+
         </div>
 
-        <% }else{%>
-          <div class="buttons">
-            <a class="loginbutton" href="/user/login">Login</a>
-            <a class="registerbutton" href="/user/register">Register</a>
-          </div>
-          <% }%>
+        <% }%>
+
+          <h1>Explore Posts</h1>
+          <%if(req.user){%>
+            <div class="right">
+              <form action="/user/logout" method="get">
+                <button>Log out</button>
+              </form>
+            </div>
+
+            <% }else{%>
+              <div class="buttons">
+                <a class="loginbutton" href="/user/login">Login</a>
+                <a class="registerbutton" href="/user/register">Register</a>
+              </div>
+              <% }%>
 
 
     </div>
