@@ -147,10 +147,15 @@
     display: flex;
     gap: 10px;
   }
-  .home{
+
+  .home {
     text-decoration: none;
     font-size: 25px;
     color: black;
+    cursor: pointer;
+  }
+
+  i {
     cursor: pointer;
   }
 </style>
@@ -167,7 +172,7 @@
         </p>
       </div>
     </div>
-  <a href="/" class="home"><i class="ri-home-2-line"></i> Home</a>
+    <a href="/" class="home"><i class="ri-home-2-line"></i> Home</a>
     <div class="right">
       <a href="/post/create" class="button">Create post</a>
       <form action="/user/logout" method="get">
